@@ -1,0 +1,67 @@
+[
+  {
+    "id": "3a0f8e1c-2a7a-4e3a-a6fb-6a4c9a836f00",
+    "common_name": "Kuzu Kulağı",
+    "latin_name": "Rumex acetosa",
+    "category": "otsu",
+    "appearance": {
+      "leaf": "Ok ucu şeklinde, parlak yeşil",
+      "flower": "Küçük kırmızımsı başak",
+      "height_cm": "30-80"
+    },
+    "habitat": ["nemli çayırlar", "orman kenarları"],
+    "similar_species": [
+      "f5f9cbec-77ba-4289-9129-80b36a2dded0"
+    ],
+    "toxicity": "caution",
+    "culinary_notes": "Yapraklar hafif ekşi tadıyla salatalarda kullanılır, oksalik asit nedeniyle aşırı tüketim önerilmez.",
+    "medicinal_notes": "Geleneksel olarak C vitamini kaynağı olarak tüketilir.",
+    "survival_uses": "Taze yapraklar küçük dozlarda susuzluğu bastırabilir.",
+    "image_refs": [
+      "https://cdn.terraguard.app/species/rumex_acetosa_1.jpg"
+    ]
+  },
+  {
+    "id": "f5f9cbec-77ba-4289-9129-80b36a2dded0",
+    "common_name": "Zehirli Baldıran",
+    "latin_name": "Conium maculatum",
+    "category": "otsu",
+    "appearance": {
+      "leaf": "Maydanoza benzer, çok parçalı, koyu yeşil",
+      "stem": "Mor benekli içi boş gövde",
+      "flower": "Beyaz şemsiye"
+    },
+    "habitat": ["dere kenarları", "tarlalar"],
+    "similar_species": [],
+    "toxicity": "toxic",
+    "culinary_notes": null,
+    "medicinal_notes": null,
+    "survival_uses": "Kesinlikle tüketilmez, temastan kaçınılır.",
+    "image_refs": [
+      "https://cdn.terraguard.app/species/conium_maculatum_1.jpg"
+    ]
+  },
+  {
+    "id": "0f440200-80b0-4eaa-9404-b4c6b6c0dc1d",
+    "common_name": "Porcini Mantarı",
+    "latin_name": "Boletus edulis",
+    "category": "mantar",
+    "appearance": {
+      "cap": "Kahverengi, hafif yapışkan",
+      "stem": "Kalın, beyazımsı ağ dokulu",
+      "pore": "Beyazdan zeytine dönen sünger"
+    },
+    "habitat": ["ibreli ormanlar", "meşe altları"],
+    "similar_species": [
+      "f10635f1-2ae3-4c9d-a5a4-531e0a2d7c33"
+    ],
+    "toxicity": "non_toxic",
+    "culinary_notes": "Kurutarak saklanabilir, çorba ve risotto için uygundur.",
+    "medicinal_notes": "Düşük kalorili protein kaynağı.",
+    "survival_uses": "Enerji verici yemeklere eklenebilir.",
+    "image_refs": [
+      "https://cdn.terraguard.app/species/boletus_edulis_1.jpg"
+    ]
+  }
+]
+

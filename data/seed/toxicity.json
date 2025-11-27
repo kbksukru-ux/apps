@@ -1,0 +1,24 @@
+[
+  {
+    "species_id": "3a0f8e1c-2a7a-4e3a-a6fb-6a4c9a836f00",
+    "risk_summary": "Oksalik asit yüksek; böbrek hastaları kaçınmalı.",
+    "symptoms": ["Mide bulantısı", "Böbrek kristalleri"],
+    "emergency_actions": ["Bol su", "Uzmanla görüş"],
+    "disable_recipes": true
+  },
+  {
+    "species_id": "f5f9cbec-77ba-4289-9129-80b36a2dded0",
+    "risk_summary": "Sinir sistemini felç eden alkaloidler içerir.",
+    "symptoms": ["Kas titremesi", "Solunum durması"],
+    "emergency_actions": ["112'yi ara", "Teması kes"],
+    "disable_recipes": true
+  },
+  {
+    "species_id": "0f440200-80b0-4eaa-9404-b4c6b6c0dc1d",
+    "risk_summary": "Genel olarak güvenli, çiğ tüketimde mideyi yorabilir.",
+    "symptoms": ["Hafif mide rahatsızlığı"],
+    "emergency_actions": ["Pişirerek tüket"],
+    "disable_recipes": false
+  }
+]
+

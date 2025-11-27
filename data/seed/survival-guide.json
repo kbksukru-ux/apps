@@ -1,0 +1,27 @@
+[
+  {
+    "slug": "yenilebilir-ilkeler",
+    "title": "Yenilebilir / Yenilmez İlkeleri",
+    "section": "foraging",
+    "body_md": "### Gözlem\n- Parlak renkler uyarı olabilir.\n- Lateks sızdıran bitkilerden kaçının.\n\n### Adımlar\n1. Gözlemle.\n2. Kokla.\n3. Cilt temas testini 15 dk beklet.\n4. Mikrotadım asla yapma.\n\n> Bu bilgiler yalnızca eğitim içindir, tüketim onayı değildir.",
+    "is_premium": false,
+    "offline_priority": 10
+  },
+  {
+    "slug": "ates-yakma",
+    "title": "Yağmurda Ateş Yakma",
+    "section": "fire",
+    "body_md": "1. Kuru iç odun bulmak için ölü ağaç kabuğunu soy.\n2. Pamuğu vazelinle kapla, kıvılcımı sür.\n3. H tipi yapı kur; hava koridoru bırak.\n4. Ateşi hiçbir zaman gözetimsiz bırakma.",
+    "is_premium": true,
+    "offline_priority": 8
+  },
+  {
+    "slug": "barinak-soguk",
+    "title": "Soğukta Barınak",
+    "section": "shelter",
+    "body_md": "### Malzemeler\n- Kar blokları veya kuru dallar\n- Isı yalıtımı için iğne yapraklılar\n\n### Kurulum\n1. Rüzgar yönüne sırtını ver.\n2. Tabanı kuru yaprakla kapla (>15cm).\n3. Girişi dar bırak, içeride havalandırma deliği aç.",
+    "is_premium": true,
+    "offline_priority": 9
+  }
+]
+

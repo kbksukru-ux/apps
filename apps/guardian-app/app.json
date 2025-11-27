@@ -1,0 +1,68 @@
+{
+  "expo": {
+    "name": "TerraGuard Botanica",
+    "slug": "terraguard-botanica",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "terraguard",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "app.terraguard",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Bitki ve mantar fotoğraflarını analiz etmek için kameraya ihtiyaç duyuyoruz.",
+        "NSLocationWhenInUseUsageDescription": "Bölgesel tür önerileri için konumunu kullanıyoruz."
+      }
+    },
+    "android": {
+      "package": "app.terraguard",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "permissions": [
+        "CAMERA",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION"
+      ],
+      "googleServicesFile": "./google-services.json"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-camera",
+      "expo-location",
+      "expo-build-properties"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "terraguard-guid"
+      }
+    },
+    "locales": {
+      "tr": "./assets/locales/tr.json"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/terraguard-guid"
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "owner": "terraguard"
+  }
+}
