@@ -1,87 +1,121 @@
-# Guardian App Deployment Guide
+# 🚀 TerraGuard Botanica - Deployment Rehberi
 
-Bu rehber, uygulamanızı Web, Android ve iOS platformlarında nasıl yayınlayacağınızı açıklar.
+Bu uygulama hem **web** hem de **mobil** (Android & iOS) platformlarda çalışabilir.
 
-## ⚠️ Kritik Ön Hazırlık: Backend URL
+## 📱 Şu Anda Neler Çalışıyor?
 
-Uygulamanız şu anda `localhost:4000` adresine istek atıyor. Gerçek bir cihazda veya web sitesinde çalışması için **Backend servisinizin (api-gateway) bir sunucuda çalışıyor olması** ve uygulamanın bu sunucuya bağlanması gerekir.
+✅ **Web Uygulaması**: `http://localhost:8081` adresinde çalışıyor  
+✅ **Mobil Geliştirme**: Expo Go ile test edilebilir durumda  
+✅ **Web Build**: `dist` klasöründe production-ready build hazır
 
-1. Backend servisinizi (örneğin Render, Heroku, AWS veya DigitalOcean'a) deploy edin.
-2. Size verilen URL'i (örn: `https://api.myapp.com`) kopyalayın.
-3. `apps/guardian-app/.env` dosyasındaki `EXPO_PUBLIC_API_BASE_URL` değerini güncelleyin:
+## 🌐 Web Deployment
 
-```properties
-EXPO_PUBLIC_API_BASE_URL=https://api.myapp.com
-```
+### Hızlı Başlangıç (Vercel)
 
----
-
-## 🌐 Web Sitesi Olarak Yayınlama
-
-Expo, uygulamanızı statik bir web sitesi olarak dışa aktarabilir.
-
-1. **Build Alın:**
-   Terminalde `apps/guardian-app` klasöründeyken şu komutu çalıştırın:
+1. **Vercel CLI'ı yükleyin:**
    ```bash
-   npx expo export -p web
+   npm install -g vercel
    ```
-   Bu komut `dist` adında bir klasör oluşturacaktır.
 
-2. **Yayınlayın (Vercel Örneği):**
-   - Vercel CLI yükleyin: `npm i -g vercel`
-   - `vercel deploy` komutunu çalıştırın ve `dist` klasörünü seçin.
-   - Veya `dist` klasörünü Netlify, GitHub Pages gibi herhangi bir statik hosting servisine yükleyebilirsiniz.
+2. **Vercel'e giriş yapın:**
+   ```bash
+   vercel login
+   ```
 
----
+3. **Deploy edin:**
+   ```bash
+   cd apps/guardian-app/dist
+   vercel --prod
+   ```
 
-## 📱 Mobil Uygulama Olarak Yayınlama (Android & iOS)
+Detaylı bilgi için: `.agent/workflows/deploy-web.md`
 
-Mobil uygulama çıktıları (APK, AAB, IPA) almak için **EAS (Expo Application Services)** kullanacağız.
+### Alternatif: Netlify
 
-### 1. Hazırlık
-- [Expo.dev](https://expo.dev) üzerinde bir hesap oluşturun.
-- EAS CLI'ı yükleyin:
-  ```bash
-  npm install -g eas-cli
-  ```
-- Hesabınıza giriş yapın:
-  ```bash
-  eas login
-  ```
-- Projeyi yapılandırın:
-  ```bash
-  eas build:configure
-  ```
-
-### 2. Android İçin Build (APK/AAB)
-
-**Test için (APK):**
-Emülatörde veya cihazınızda test etmek için:
 ```bash
-eas build -p android --profile preview
+npm install -g netlify-cli
+netlify deploy --dir=apps/guardian-app/dist --prod
 ```
 
-**Google Play Store için (AAB):**
-Mağazaya yüklemek için:
+## 📱 Mobil Deployment
+
+### Android & iOS Build Almak
+
+1. **EAS CLI'ı yükleyin:**
+   ```bash
+   npm install -g eas-cli
+   ```
+
+2. **Expo'ya giriş yapın:**
+   ```bash
+   eas login
+   ```
+
+3. **Android APK (Test için):**
+   ```bash
+   cd apps/guardian-app
+   eas build -p android --profile preview
+   ```
+
+4. **Android AAB (Google Play için):**
+   ```bash
+   eas build -p android --profile production
+   ```
+
+5. **iOS (Apple Developer hesabı gerekli):**
+   ```bash
+   eas build -p ios --profile production
+   ```
+
+Detaylı bilgi için: `.agent/workflows/deploy-mobile.md`
+
+## ⚠️ Önemli: Backend URL
+
+Uygulamanız şu anda `localhost:4000` adresine bağlanıyor. Production'a geçmeden önce:
+
+1. Backend servisinizi bir sunucuya deploy edin (Render, Railway, Heroku, vb.)
+2. `apps/guardian-app/.env` dosyasında URL'i güncelleyin:
+   ```
+   EXPO_PUBLIC_API_BASE_URL=https://your-backend-url.com
+   ```
+
+## 📊 Deployment Durumu
+
+| Platform | Durum | URL/Store |
+|----------|-------|-----------|
+| **Web (Local)** | ✅ Çalışıyor | http://localhost:8081 |
+| **Web (Production)** | 🔄 Hazır (Deploy edilmedi) | - |
+| **Android** | 🔄 Build alınabilir | - |
+| **iOS** | 🔄 Build alınabilir | - |
+
+## 🛠️ Geliştirme Komutları
+
 ```bash
-eas build -p android --profile production
+# Web'de çalıştır
+npm run web
+
+# Android emülatörde çalıştır
+npm run android
+
+# iOS simulatörde çalıştır
+npm run ios
+
+# Tüm platformlarda çalıştır
+npm start
 ```
 
-### 3. iOS İçin Build (IPA)
+## 📝 Sonraki Adımlar
 
-*Not: iOS için Apple Developer Hesabı (yıllık $99) gereklidir.*
+1. ✅ Git repository oluşturuldu
+2. ✅ Web build hazır
+3. ✅ EAS yapılandırması tamamlandı
+4. ⏳ Backend'i deploy edin
+5. ⏳ Web'i Vercel'e deploy edin
+6. ⏳ Mobil build'leri alın
+7. ⏳ App Store & Play Store'a yükleyin
 
-**Test için (Ad-hoc/Simulator):**
-```bash
-eas build -p ios --profile preview
-```
+## 🆘 Yardım
 
-**App Store için:**
-```bash
-eas build -p ios --profile production
-```
-
-### 4. Mağazalara Yükleme
-Build işlemi bittiğinde EAS size bir indirme linki verecektir.
-- **Android:** `.aab` dosyasını Google Play Console'a yükleyin.
-- **iOS:** Transporter uygulamasını kullanarak `.ipa` dosyasını App Store Connect'e yükleyin.
+- Web deployment: `/deploy-web` komutunu kullanın
+- Mobil deployment: `/deploy-mobile` komutunu kullanın
+- Sorun yaşarsanız: [Expo Documentation](https://docs.expo.dev)
