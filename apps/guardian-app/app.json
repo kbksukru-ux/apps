@@ -31,9 +31,17 @@
       "permissions": [
         "CAMERA",
         "ACCESS_FINE_LOCATION",
-        "ACCESS_COARSE_LOCATION"
+        "ACCESS_COARSE_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
       ],
-      "googleServicesFile": "./google-services.json"
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD6qbzX17GMI65bS_ffYRC7CdaAvf_zKb8"
+        }
+      }
     },
     "web": {
       "bundler": "metro",
@@ -49,20 +57,14 @@
     "experiments": {
       "typedRoutes": true
     },
-    "extra": {
-      "eas": {
-        "projectId": "terraguard-guid"
-      }
-    },
     "locales": {
       "tr": "./assets/locales/tr.json"
     },
-    "updates": {
-      "url": "https://u.expo.dev/terraguard-guid"
-    },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
-    "owner": "terraguard"
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "9bb4dd0e-5637-426b-bba3-bd72acb4bc02"
+      }
+    }
   }
 }
