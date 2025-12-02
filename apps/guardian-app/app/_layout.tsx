@@ -9,6 +9,7 @@ import { AppProviders } from '@/providers/AppProviders';
 import i18n from '@/lib/i18n';
 import { initOfflineTables } from '@/lib/offline';
 import { ResponsiveContainer } from '@/components/ResponsiveContainer';
+import { LoadingScreen } from '@/components/LoadingScreen';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -19,11 +20,14 @@ export default function RootLayout() {
   useEffect(() => {
     (async () => {
       await FontAwesome.loadFont();
-      try {
-        await initOfflineTables();
-      } catch (e) {
-        console.warn('Offline init failed:', e);
-      }
+
+      // Temporarily disable offline init for mobile
+      // try {
+      //   await initOfflineTables();
+      // } catch (e) {
+      //   console.warn('Offline init failed:', e);
+      // }
+
       setReady(true);
       SplashScreen.hideAsync();
     })();

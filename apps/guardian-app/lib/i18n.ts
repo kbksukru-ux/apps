@@ -21,7 +21,7 @@ const resources = {
 
 if (!i18n.isInitialized) {
   i18n.use(initReactI18next).init({
-    compatibilityJSON: 'v3',
+    compatibilityJSON: 'v4',
     lng: 'tr',
     fallbackLng: 'tr',
     resources,

@@ -52,7 +52,7 @@
       "expo-router",
       "expo-camera",
       "expo-location",
-      "expo-build-properties"
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

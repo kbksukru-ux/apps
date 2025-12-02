@@ -6,6 +6,14 @@ import { MapLegend } from '@/components/ui/MapLegend';
 // Google Maps API key
 const GOOGLE_MAPS_API_KEY = 'AIzaSyD6qbzX17GMI65bS_ffYRC7CdaAvf_zKb8';
 
+// Declare global google maps types
+declare global {
+    interface Window {
+        google: any;
+    }
+    const google: any;
+}
+
 interface Region {
     latitude: number;
     longitude: number;
@@ -15,8 +23,8 @@ interface Region {
 
 export default function Map() {
     const mapRef = useRef<HTMLDivElement>(null);
-    const googleMapRef = useRef<google.maps.Map | null>(null);
-    const markersRef = useRef<google.maps.Marker[]>([]);
+    const googleMapRef = useRef<any>(null);
+    const markersRef = useRef<any[]>([]);
     const [isMapLoaded, setIsMapLoaded] = useState(false);
 
     const [region, setRegion] = useState<Region>({

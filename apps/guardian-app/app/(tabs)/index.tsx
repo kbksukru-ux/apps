@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, Pressable, StyleSheet, Image, ScrollView, ActivityIndicator, SafeAreaView, Platform } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Image, ScrollView, ActivityIndicator, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
 import { useIdentify } from '@/hooks/useIdentify';
@@ -9,6 +9,9 @@ import { useIdentificationStore } from '@/store/identificationStore';
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { PlatformSafeView } from '@/components/PlatformSafeView';
+import { pickImage as pickImageUtil } from '@/lib/imagePicker';
+import { hapticFeedback } from '@/lib/haptics';
 
 export default function IdentifyScreen() {
   const [photo, setPhoto] = useState<ImagePicker.ImagePickerAsset | null>(null);
@@ -18,43 +21,32 @@ export default function IdentifyScreen() {
   const colors = Colors[colorScheme ?? 'light'] ?? Colors.light;
 
   const pickImage = async () => {
-    // Web'de kamera yerine dosya seçici kullan
-    if (Platform.OS === 'web') {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        quality: 0.7,
-        base64: true,
-      });
-      if (!result.canceled) {
-        setPhoto(result.assets[0]);
-        await submit(result.assets[0]);
-      }
-    } else {
-      const permission = await ImagePicker.requestCameraPermissionsAsync();
-      if (!permission.granted) return;
-      const result = await ImagePicker.launchCameraAsync({
-        base64: true,
-        quality: 0.7,
-      });
-      if (!result.canceled) {
-        setPhoto(result.assets[0]);
-        await submit(result.assets[0]);
-      }
+    hapticFeedback.light();
+    const asset = await pickImageUtil({ quality: 0.7, includeBase64: true });
+    if (asset) {
+      setPhoto(asset);
+      await submit(asset);
     }
   };
 
   const submit = async (asset: ImagePicker.ImagePickerAsset) => {
-    await Location.requestForegroundPermissionsAsync();
-    const location = await Location.getCurrentPositionAsync({ mayShowUserSettingsDialog: true }).catch(() => null);
-    const blob = await (await fetch(asset.uri)).blob();
-    await mutateAsync({
-      file: blob,
-      geo: location ? { lat: location.coords.latitude, lng: location.coords.longitude } : undefined,
-    });
+    try {
+      await Location.requestForegroundPermissionsAsync();
+      const location = await Location.getCurrentPositionAsync({ mayShowUserSettingsDialog: true }).catch(() => null);
+      const blob = await (await fetch(asset.uri)).blob();
+      await mutateAsync({
+        file: blob,
+        geo: location ? { lat: location.coords.latitude, lng: location.coords.longitude } : undefined,
+      });
+      hapticFeedback.success();
+    } catch (error) {
+      hapticFeedback.error();
+      throw error;
+    }
   };
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]}>
+    <PlatformSafeView backgroundColor={colors.background}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={[styles.header, { backgroundColor: colors.primary }]}>
           <View>
@@ -160,14 +152,11 @@ export default function IdentifyScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </PlatformSafeView>
   );
 }
 
 const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
   container: {
     paddingBottom: 24,
   },
